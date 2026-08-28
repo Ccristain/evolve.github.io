@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login and Signup</title>
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/pages_css/authentication.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alice&family=Anton&family=Baloo+2:wght@400..800&family=Bebas+Neue&family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="primary-header">
+      <figure id="logo-wrapper">
+        <a href="#"><img src="../assets/logo_evolv_light.png" /></a>
+      </figure>
+      <nav id="navlinks">
+        <a href="../index.html">HOME</a>
+        <a href="../index.html#tutorial">HOW TO USE</a>
+        <a href="#">ABOUT</a>
+        <a href="#">CONTACT US</a>
+      </nav>
+    </header>
+    <main>
+      <h1 class="title title-size">Identify Yourself</h1>
+      <div id="auth-wrapper">
+        <div id="auth-btn-wrapper">
+          <button id="login-btn">
+            <h2 class="title second-title-size">Log in</h2>
+          </button>
+          <button id="signup-btn">
+            <h2 class="title second-title-size">Sign up</h2>
+          </button>
+        </div>
+        <div id="form-wrapper">
+          <form id="login-form">
+            <div class="input-wrapper input-decor">
+              <label for="username" id="name-label">Username</label>
+              <input type="text" name="username" id="username" />
+            </div>
+            <div class="input-wrapper input-decor">
+              <label for="username" id="pass-label">Password</label>
+              <input type="password" name="password" id="password" />
+            </div>
+            <div id="remember-wrapper">
+              <input
+                type="checkbox"
+                name="remember"
+                value="yes"
+                id="remember"
+              /><label for="remember">Remember me</label>
+            </div>
+
+            <button type="submit" class="action-button">Log in</button>
+          </form>
+          <form id="signup-form">
+            <div class="input-wrapper input-decor">
+              <label for="username-apply" id="name-label-apply">Username</label>
+              <input type="text" name="username-apply" id="username-apply" />
+            </div>
+            <div class="input-wrapper input-decor">
+              <label for="email" id="email-label">Email</label>
+              <input type="text" name="email" id="email" />
+            </div>
+            <div class="input-wrapper input-decor">
+              <label for="pass-apply" id="pass-label-apply">Password</label>
+              <input type="password" name="pass-apply" id="pass-apply" />
+            </div>
+            <div class="input-wrapper input-decor">
+              <label for="confirm-pass-apply" id="confirm-pass-label-apply"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                name="confirm-pass-apply"
+                id="confirm-pass-apply"
+              />
+            </div>
+            <button type="submit" class="action-button">Sign up</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-child">
+        <a href="#">About Us</a>
+        <a href="#">Address</a>
+        <a href="#">Cookie Settings</a>
+      </div>
+      <div class="footer-child"><img src="../assets/evolv_logo.png" /></div>
+      <div class="footer-child">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Help</a>
+      </div>
+      <p id="right-reserve">© 2026 Evolv. All rights reserved.</p>
+    </footer>
+    <script src="../js/global.js"></script>
+    <script src="../js/pages_js/authentication.js"></script>
+  </body>
+</html>
