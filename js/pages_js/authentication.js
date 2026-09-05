@@ -1,3 +1,4 @@
+/* Change View */
 const signupBtn = document.getElementById("signup-btn");
 const loginBtn = document.getElementById("login-btn");
 const signupForm = document.getElementById("signup-form");
@@ -15,4 +16,20 @@ loginBtn.addEventListener("click", () => {
   loginForm.classList.remove("close-form");
   loginBtn.classList.remove("add-border");
   signupBtn.classList.remove("remove-border");
+});
+
+/* Navigation towards Dashboard */
+const trueLoginBtn = document.getElementById("log-in-btn");
+const trueSignUpBtn = document.getElementById("sign-up-btn");
+
+trueLoginBtn.addEventListener("click", () => {
+  event.preventDefault();
+
+  window.location.href = "./dashboard.html";
+});
+
+trueSignUpBtn.addEventListener("click", () => {
+  event.preventDefault();
+
+  window.location.href = "./dashboard.html";
 });

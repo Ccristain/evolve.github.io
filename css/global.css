@@ -3,6 +3,7 @@
   color: var(--color-text);
   padding: 0;
   margin: 0;
+  font-family: "inter";
 }
 html {
   scroll-behavior: smooth;
@@ -49,7 +50,6 @@ main {
 }
 
 .text {
-  font-family: "Inter";
   font-size: var(--font-md);
 }
 
@@ -63,7 +63,6 @@ main {
 
 .action-button {
   font-size: var(--font-lg);
-  font-family: "Inter";
   font-weight: 600;
   text-decoration: none;
   background-color: var(--color-primary);
@@ -103,6 +102,10 @@ main {
   margin: 2rem;
   background-color: var(--color-text);
   border: none;
+}
+
+.icon {
+  width: 3rem;
 }
 /*HEADER*/
 header {
@@ -146,7 +149,6 @@ header {
 }
 /*FOOTER*/
 footer {
-  font-family: "Inter";
   font-size: var(--font-sm);
   background-color: var(--color-text-secondary);
 

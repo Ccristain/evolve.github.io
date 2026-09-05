@@ -64,7 +64,7 @@ html {
   flex-direction: column;
 
   align-items: center;
-  font-family: "Inter";
+
   padding: 2rem;
   row-gap: 1rem;
   text-align: center;
@@ -113,8 +113,4 @@ html {
 
 #yt-container:hover {
   opacity: 0.8;
-}
-
-#yt-icon {
-  width: 3rem;
 }

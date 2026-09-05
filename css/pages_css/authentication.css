@@ -52,7 +52,7 @@ html {
 }
 #login-form {
   background-color: var(--color-card);
-  font-family: "Inter";
+
   font-size: var(--font-md);
   display: flex;
   flex-direction: column;
@@ -117,7 +117,7 @@ html {
 /*Signup*/
 #signup-form {
   background-color: var(--color-card);
-  font-family: "Inter";
+
   font-size: var(--font-md);
 
   padding: 2rem 4rem;
