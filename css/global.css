@@ -187,3 +187,64 @@ footer a:hover {
   grid-column: 1/4;
   font-size: var(--font-sm);
 }
+
+/*Tooltip*/
+
+#toolset {
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--color-text);
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  z-index: 10;
+  border: 1px var(--color-border) solid;
+  transition: all 50ms ease-out;
+}
+
+#toolset-icon {
+  transition: all 250ms ease-in;
+}
+
+#toolset:hover #toolset-icon {
+  transform: rotate(360deg);
+}
+
+#toolset:active {
+  right: 3.5rem;
+}
+/*menu*/
+#tool-menu {
+  width: 0;
+  display: none;
+  height: auto;
+  background-color: var(--color-text);
+  padding: 0.5rem 1rem;
+
+  border-bottom-left-radius: 1rem;
+
+  position: absolute;
+  bottom: 3.5rem;
+  right: 7rem;
+  border: none;
+
+  transform-origin: right;
+}
+
+.tool {
+  border: 2px var(--color-border) solid;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 500ms ease;
+}
+
+.tool:hover {
+  transform: scale(1.1);
+}
+
+.menu-active {
+  width: 60% !important;
+  display: block !important;
+}

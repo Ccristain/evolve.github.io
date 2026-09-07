@@ -1,3 +1,4 @@
+/*Header Scroll*/
 const primaryHeader = document.querySelector(".primary-header");
 const scrollWatcher = document.createElement("div");
 

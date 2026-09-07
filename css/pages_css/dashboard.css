@@ -39,11 +39,6 @@ aside {
 
   cursor: pointer;
 }
-#gallery-wrapper {
-  grid-column: 2/3;
-  grid-row: 2/3;
-  padding: 1.5rem;
-}
 
 aside img {
   width: 6rem;
@@ -123,6 +118,12 @@ header {
   transform: rotate(360deg);
 }
 /*Main*/
+#gallery-wrapper {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  padding: 1.5rem;
+}
+
 #gallery-folder {
   width: 100%;
   height: 100%;
@@ -151,6 +152,12 @@ header {
   align-items: center;
   row-gap: 0.5rem;
   object-fit: contain;
+
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+.folder:hover {
+  opacity: 0.8;
 }
 
 .folder-img {
