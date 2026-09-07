@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/pages_css/gallery.css" />
+    <link rel="stylesheet" href="../css/pages_css/global_modal.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -85,10 +86,31 @@
         />
       </button>
       <div id="tool-menu">
-        <button class="tool">
-          <img src="../assets/icons/plus_icon_dark.svg" class="icon" />
+        <button class="tool" onclick="openModal()">
+          <img src="../assets/icons/plus.svg" class="icon" />
         </button>
       </div>
+      <article id="create-folder-modal-wrapper">
+        <form id="create-folder-modal">
+          <button id="close-modal-btn" onclick="closeModal()">
+            <img
+              src="../assets/icons/x.svg"
+              alt="close-modal-button"
+              class="icon"
+            />
+          </button>
+          <h2 class="title second-title-size">Create New Folder</h2>
+          <div class="modal-input-wrapper">
+            <label for="create-title-input" class="modal-label">Title:</label>
+            <input
+              type="text"
+              name="create-title-input"
+              id="create-title-input"
+            />
+          </div>
+          <button type="submit" class="action-button">Create</button>
+        </form>
+      </article>
     </main>
     <script src="../js/global_tool.js"></script>
     <script src="../js/pages_js/gallery.js"></script>
