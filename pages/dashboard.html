@@ -67,16 +67,7 @@
     <main id="gallery-wrapper">
       <section id="gallery-folder">
         <h1 class="title">Collections</h1>
-        <div id="folders">
-          <figure id="folder-1" class="folder">
-            <img
-              src="../assets/evolv_logo.png"
-              class="folder-img"
-              alt="folder-image"
-            />
-            <figcaption class="folder-cap">Folder Name</figcaption>
-          </figure>
-        </div>
+        <div id="folders"></div>
       </section>
       <button id="toolset" class="flex-center">
         <img
@@ -108,7 +99,9 @@
               id="create-title-input"
             />
           </div>
-          <button type="submit" class="action-button">Create</button>
+          <button type="button" class="action-button" onclick="createFolder()">
+            Create
+          </button>
         </form>
       </article>
     </main>

@@ -2,7 +2,6 @@ const toolBtn = document.getElementById("toolset");
 const toolMenu = document.getElementById("tool-menu");
 
 toolBtn.addEventListener("click", () => {
-  console.log("asdsad");
   toolMenu.classList.toggle("menu-active");
 });
 
@@ -14,4 +13,7 @@ function closeModal() {
 }
 function openModal() {
   modalWrapper.classList.add("display-modal");
+
+  const folderInput = document.getElementById("create-title-input");
+  folderInput.value = "";
 }

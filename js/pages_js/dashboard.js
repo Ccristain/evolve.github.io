@@ -1,7 +1,57 @@
-const folders = document.querySelectorAll(".folder");
+/*Render Folder*/
+const folderWrapper = document.getElementById("folders");
 
-folders.forEach((folder) => {
-  folder.addEventListener("click", () => {
-    window.location.href = "./gallery.html";
+const folderItems = [];
+
+let counter = folderItems.length + 1;
+
+function renderFolder(replace) {
+  if (replace) {
+    folderWrapper.innerHTML = "";
+  }
+  folderItems.forEach((folder) => {
+    const figureTag = document.createElement("figure");
+
+    figureTag.classList.add("folder");
+    figureTag.dataset.folderId = folder.id;
+
+    figureTag.innerHTML = `
+    <img
+              src="${folder.imgDisplay}"
+              class="folder-img"
+              alt="${folder.folderName}"
+            />
+            <figcaption class="folder-cap">${folder.folderName}</figcaption>
+  `;
+
+    folderWrapper.appendChild(figureTag);
   });
-});
+
+  /*Redirect to Gallery */
+  const folders = document.querySelectorAll(".folder");
+
+  folders.forEach((folder) => {
+    folder.addEventListener("click", () => {
+      window.location.href = "./gallery.html";
+    });
+  });
+}
+
+renderFolder();
+
+/*Create Folder*/
+function createFolder() {
+  const folderTitle = document.getElementById("create-title-input");
+
+  folderItems.push({
+    id: counter++,
+    folderName: folderTitle.value,
+    date: "null",
+    imgDisplay: "../assets/evolv_logo.png",
+  });
+
+  renderFolder(1);
+
+  const modalWrapper = document.getElementById("create-folder-modal-wrapper");
+  modalWrapper.classList.remove("display-modal");
+}

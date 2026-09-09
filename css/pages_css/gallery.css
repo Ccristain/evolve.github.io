@@ -141,6 +141,9 @@ header {
 #items {
   width: 100%;
   height: auto;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .item {
