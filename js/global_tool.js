@@ -14,6 +14,6 @@ function closeModal() {
 function openModal() {
   modalWrapper.classList.add("display-modal");
 
-  const folderInput = document.getElementById("create-title-input");
+  const folderInput = document.querySelector(".modal");
   folderInput.value = "";
 }

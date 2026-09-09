@@ -1,7 +1,14 @@
 /*Render Folder*/
 const folderWrapper = document.getElementById("folders");
 
-const folderItems = [];
+const folderItems = [
+  {
+    id: 1,
+    folderName: "sample",
+    date: "null",
+    imgDisplay: "../assets/evolv_logo.png",
+  },
+];
 
 let counter = folderItems.length + 1;
 

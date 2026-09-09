@@ -4,26 +4,31 @@ const itemsWrapper = document.getElementById("items");
 const dailyImages = [
   {
     id: 1,
-    count: 1,
+    folderId: 1,
     dateUploaded: "#",
     imgUploaded: "../assets/evolv_logo.png",
   },
   {
     id: 2,
-    count: 2,
+    folderId: 2,
     dateUploaded: "#",
     imgUploaded: "../assets/evolv_logo.png",
   },
 ];
 
-let counter = 1;
-dailyImages.forEach((item) => {
-  const figureTag = document.createElement("figure");
+let counter = dailyImages.length + 1;
 
-  figureTag.classList.add("item");
-  figureTag.dataset.itemId = item.id;
+function renderImages(replace) {
+  if (replace) {
+    itemsWrapper.innerHTML = "";
+  }
+  dailyImages.forEach((item) => {
+    const figureTag = document.createElement("figure");
 
-  figureTag.innerHTML = `
+    figureTag.classList.add("item");
+    figureTag.dataset.itemId = item.id;
+
+    figureTag.innerHTML = `
         <img
               src="${item.imgUploaded}"
               class="item-img"
@@ -32,5 +37,27 @@ dailyImages.forEach((item) => {
             <figcaption class="item-cap">Day: ${counter++}</figcaption>
     `;
 
-  itemsWrapper.appendChild(figureTag);
-});
+    itemsWrapper.appendChild(figureTag);
+  });
+}
+
+renderImages();
+
+/*Create Folder*/
+
+dailyImage.addEventListener("change", () => {});
+function uploadDailyImage() {
+  const dailyImage = document.getElementById("daily-image-input");
+  const imageFile = dailyImage.files[0];
+  dailyImages.push({
+    id: counter,
+    folderId: 1,
+    dateUploaded: "#",
+    imgUploaded: URL.createObjectURL(imageFile),
+  });
+
+  renderImages(1);
+
+  const modalWrapper = document.getElementById("create-folder-modal-wrapper");
+  modalWrapper.classList.remove("display-modal");
+}

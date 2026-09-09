@@ -99,16 +99,26 @@
               class="icon"
             />
           </button>
-          <h2 class="title second-title-size">Create New Folder</h2>
+          <h2 class="title second-title-size">Upload Image</h2>
           <div class="modal-input-wrapper">
-            <label for="create-title-input" class="modal-label">Title:</label>
+            <label for="daily-image-input" class="modal-label"
+              >Select image:</label
+            >
             <input
-              type="text"
-              name="create-title-input"
-              id="create-title-input"
+              type="file"
+              accept="image/*"
+              name="daily-image-input"
+              id="daily-image-input"
+              class="modal"
             />
           </div>
-          <button type="submit" class="action-button">Create</button>
+          <button
+            type="button"
+            class="action-button"
+            onclick="uploadDailyImage()"
+          >
+            Upload
+          </button>
         </form>
       </article>
     </main>
