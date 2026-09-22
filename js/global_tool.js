@@ -7,13 +7,18 @@ toolBtn.addEventListener("click", () => {
 
 /*close create folder modal*/
 const modalWrapper = document.getElementById("create-folder-modal-wrapper");
-function closeModal() {
+function closeModal(wrapper) {
+  const wrapperId = document.getElementById(wrapper);
   event.preventDefault();
-  modalWrapper.classList.remove("display-modal");
+  wrapperId.classList.remove("display-modal");
 }
-function openModal() {
-  modalWrapper.classList.add("display-modal");
+
+function openModal(wrapper) {
+  const wrapperId = document.getElementById(wrapper);
+  wrapperId.classList.add("display-modal");
 
   const folderInput = document.querySelector(".modal");
-  folderInput.value = "";
+  if (folderInput) {
+    folderInput.value = "";
+  }
 }

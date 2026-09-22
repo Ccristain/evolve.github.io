@@ -12,10 +12,9 @@ const folderItems = [
 
 let counter = folderItems.length + 1;
 
-function renderFolder(replace) {
-  if (replace) {
-    folderWrapper.innerHTML = "";
-  }
+function renderFolder() {
+  folderWrapper.innerHTML = "";
+
   folderItems.forEach((folder) => {
     const figureTag = document.createElement("figure");
 
@@ -33,7 +32,10 @@ function renderFolder(replace) {
 
     folderWrapper.appendChild(figureTag);
   });
+  activateEventHandler();
+}
 
+function activateEventHandler() {
   /*Redirect to Gallery */
   const folders = document.querySelectorAll(".folder");
 
@@ -43,7 +45,7 @@ function renderFolder(replace) {
     });
   });
 }
-
+/*First Render */
 renderFolder();
 
 /*Create Folder*/
@@ -57,7 +59,7 @@ function createFolder() {
     imgDisplay: "../assets/evolv_logo.png",
   });
 
-  renderFolder(1);
+  renderFolder();
 
   const modalWrapper = document.getElementById("create-folder-modal-wrapper");
   modalWrapper.classList.remove("display-modal");

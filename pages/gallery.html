@@ -86,13 +86,16 @@
         />
       </button>
       <div id="tool-menu">
-        <button class="tool" onclick="openModal()">
+        <button class="tool" onclick="openModal('create-folder-modal-wrapper')">
           <img src="../assets/icons/plus.svg" class="icon" />
         </button>
       </div>
       <article id="create-folder-modal-wrapper">
         <form id="create-folder-modal">
-          <button id="close-modal-btn" onclick="closeModal()">
+          <button
+            class="close-modal-btn"
+            onclick="closeModal('create-folder-modal-wrapper')"
+          >
             <img
               src="../assets/icons/x.svg"
               alt="close-modal-button"
@@ -122,6 +125,19 @@
         </form>
       </article>
     </main>
+    <figure id="fullscreen-wrapper">
+      <button
+        class="close-modal-btn"
+        onclick="closeModal('fullscreen-wrapper')"
+      >
+        <img
+          src="../assets/icons/x.svg"
+          alt="close-modal-button"
+          class="icon"
+        />
+      </button>
+      <img src="../assets/evolv_logo.png" id="fullscreen-img" alt="" />
+    </figure>
     <script src="../js/global_tool.js"></script>
     <script src="../js/pages_js/gallery.js"></script>
   </body>
