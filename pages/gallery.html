@@ -66,7 +66,15 @@
     </aside>
     <main id="gallery-wrapper">
       <section id="gallery-folder">
-        <h1 class="title" id="folder-title">Folder Title</h1>
+        <section id="title-wrapper">
+          <h1 class="title" id="folder-title">Folder Title</h1>
+          <button class="action-button" id="export-btn">
+            <img
+              src="../assets/icons/arrow-right-dark.svg"
+              alt="export"
+            />Export
+          </button>
+        </section>
         <div id="items">
           <!--<figure id="item-1" class="item">
             <img
@@ -86,49 +94,74 @@
         />
       </button>
       <div id="tool-menu">
-        <button class="tool" onclick="openModal('create-folder-modal-wrapper')">
+        <button class="tool" id="openUploadModal">
           <img src="../assets/icons/plus.svg" class="icon" />
         </button>
       </div>
-      <article id="create-folder-modal-wrapper">
-        <form id="create-folder-modal">
-          <button
-            class="close-modal-btn"
-            onclick="closeModal('create-folder-modal-wrapper')"
-          >
+      <dialog id="create-folder-modal-wrapper">
+        <form class="large-modal">
+          <button type="button" class="close-modal-btn" id="closeUploadModal">
             <img
               src="../assets/icons/x.svg"
               alt="close-modal-button"
               class="icon"
             />
           </button>
-          <h2 class="title second-title-size">Upload Image</h2>
-          <div class="modal-input-wrapper">
-            <label for="daily-image-input" class="modal-label"
-              >Select image:</label
-            >
-            <input
-              type="file"
-              accept="image/*"
-              name="daily-image-input"
-              id="daily-image-input"
-              class="modal"
-            />
+          <div id="camera-upload-input-wrapper">
+            <div class="capture-modal">
+              <h2 class="title second-title-size">Capture</h2>
+              <video id="camera" autoplay muted playsinline></video>
+              <canvas id="capture-canvas" style="display: none"></canvas>
+              <button type="button" id="capture-btn" class="action-button">
+                Capture
+              </button>
+            </div>
+            <p class="capture-modal">or</p>
+            <div class="capture-modal">
+              <img src="#" id="selectedImageFromFile" />
+              <div class="modal-input-wrapper">
+                <label for="daily-image-input" class="modal-label"
+                  >Upload image:</label
+                >
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="daily-image-input"
+                  id="daily-image-input"
+                  class="modal"
+                />
+              </div>
+              <button type="button" class="action-button" id="upload-btn">
+                Upload
+              </button>
+            </div>
           </div>
-          <button
-            type="button"
-            class="action-button"
-            onclick="uploadDailyImage()"
-          >
-            Upload
-          </button>
         </form>
-      </article>
+      </dialog>
+      <dialog id="export-modal">
+        <section class="small-modal" id="export-modal-content-wrapper">
+          <canvas id="export-canvas"></canvas>
+          <p>Select Timelapse Speed</p>
+          <section class="flex-middle speed-mode">
+            <button class="action-button" id="fast">Fast</button>
+            <button class="action-button" id="medium">Medium</button>
+            <button class="action-button" id="slow">Slow</button>
+          </section>
+          <button class="action-button">Download</button>
+        </section>
+        <button type="button" class="close-modal-btn" id="closeExportModal">
+          <img
+            src="../assets/icons/x.svg"
+            alt="close-modal-button"
+            class="icon"
+          />
+        </button>
+      </dialog>
     </main>
     <figure id="fullscreen-wrapper">
       <button
-        class="close-modal-btn"
         onclick="closeModal('fullscreen-wrapper')"
+        class="close-modal-btn"
       >
         <img
           src="../assets/icons/x.svg"
@@ -139,6 +172,7 @@
       <img src="../assets/evolv_logo.png" id="fullscreen-img" alt="" />
     </figure>
     <script src="../js/global_tool.js"></script>
+
     <script src="../js/pages_js/gallery.js"></script>
   </body>
 </html>

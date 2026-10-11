@@ -18,8 +18,7 @@
 }
 
 #create-folder-modal-wrapper {
-  display: none;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
 
@@ -32,13 +31,19 @@
 
   justify-content: center;
   align-items: center;
+
+  max-width: none;
+  max-height: none;
+  border: none;
 }
 
-#create-folder-modal {
-  position: absolute;
-
-  width: auto;
+.large-modal {
+  width: 80%;
+  position: relative;
+  top: 10%;
+  left: 10%;
   height: auto;
+  height: 80%;
   padding: 0.5rem 1rem;
 
   background-color: var(--color-card);
@@ -47,6 +52,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+}
+
+.small-modal {
+  width: auto;
+  height: auto;
+  max-height: 80%;
+  padding: 0.5rem 1rem;
+
+  background-color: var(--color-card);
+  border-radius: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   row-gap: 1rem;
 }
 

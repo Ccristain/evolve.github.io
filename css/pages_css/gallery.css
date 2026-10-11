@@ -123,6 +123,15 @@ header {
   transform: rotate(360deg);
 }
 /*Main*/
+#title-wrapper,
+#export-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+#export-btn {
+  gap: 0.5rem !important;
+}
 #folder-title {
   margin-bottom: 0.5rem;
 }
@@ -153,7 +162,6 @@ header {
   flex-direction: column;
   align-items: center;
   row-gap: 0.5rem;
-  object-fit: contain;
 
   cursor: pointer;
   transition: all 250ms ease;
@@ -166,6 +174,7 @@ header {
   width: 100%;
   aspect-ratio: 1/1;
   border-radius: 1rem;
+  object-fit: cover;
 }
 
 .item-cap {
@@ -196,4 +205,51 @@ header {
 #fullscreen-wrapper .close-modal-btn {
   top: 1rem;
   right: 1rem;
+}
+
+#camera {
+  width: 500px;
+  height: auto;
+  transform: scaleX(-1);
+}
+
+#camera-upload-input-wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 2rem;
+}
+
+.capture-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#selectedImageFromFile {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+/*Export Modal*/
+#export-canvas {
+  width: calc(800px + 5vw);
+}
+
+#export-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+  border: none;
+  background: none;
+}
+
+#export-modal-content-wrapper {
+  width: auto;
+}
+
+.speed-mode {
+  width: 100%;
 }

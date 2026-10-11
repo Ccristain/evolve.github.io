@@ -25,7 +25,7 @@
       <nav id="navlinks">
         <a href="../index.html">HOME</a>
         <a href="../index.html#tutorial">HOW TO USE</a>
-        <a href="#">ABOUT</a>
+        <a href="../pages/about.html">ABOUT</a>
         <a href="#">CONTACT US</a>
       </nav>
     </header>
@@ -43,12 +43,26 @@
         <div id="form-wrapper">
           <form id="login-form">
             <div class="input-wrapper input-decor">
-              <label for="username" id="name-label">Username</label>
-              <input type="text" name="username" id="username" />
+              <label for="username" id="name-label" class="input-labels"
+                >Username</label
+              >
+              <input
+                type="text"
+                name="username"
+                id="username"
+                class="auth-input"
+              />
             </div>
             <div class="input-wrapper input-decor">
-              <label for="username" id="pass-label">Password</label>
-              <input type="password" name="password" id="password" />
+              <label for="username" id="pass-label" class="input-labels"
+                >Password</label
+              >
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="auth-input"
+              />
             </div>
             <div id="remember-wrapper">
               <input
@@ -65,25 +79,48 @@
           </form>
           <form id="signup-form">
             <div class="input-wrapper input-decor">
-              <label for="username-apply" id="name-label-apply">Username</label>
-              <input type="text" name="username-apply" id="username-apply" />
+              <label
+                for="username-apply"
+                id="name-label-apply"
+                class="input-labels"
+                >Username</label
+              >
+              <input
+                type="text"
+                name="username-apply"
+                id="username-apply"
+                class="auth-input"
+              />
             </div>
             <div class="input-wrapper input-decor">
-              <label for="email" id="email-label">Email</label>
-              <input type="text" name="email" id="email" />
+              <label for="email" id="email-label" class="input-labels"
+                >Email</label
+              >
+              <input type="text" name="email" id="email" class="auth-input" />
             </div>
             <div class="input-wrapper input-decor">
-              <label for="pass-apply" id="pass-label-apply">Password</label>
-              <input type="password" name="pass-apply" id="pass-apply" />
+              <label for="pass-apply" id="pass-label-apply" class="input-labels"
+                >Password</label
+              >
+              <input
+                type="password"
+                name="pass-apply"
+                id="pass-apply"
+                class="auth-input"
+              />
             </div>
             <div class="input-wrapper input-decor">
-              <label for="confirm-pass-apply" id="confirm-pass-label-apply"
+              <label
+                for="confirm-pass-apply"
+                id="confirm-pass-label-apply"
+                class="input-labels"
                 >Confirm Password</label
               >
               <input
                 type="password"
                 name="confirm-pass-apply"
                 id="confirm-pass-apply"
+                class="auth-input"
               />
             </div>
             <button type="submit" class="action-button" id="sign-up-btn">

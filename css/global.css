@@ -194,7 +194,7 @@ footer a:hover {
   width: 5rem;
   height: 5rem;
   background-color: var(--color-text);
-  position: absolute;
+  position: fixed;
   bottom: 3rem;
   right: 3rem;
   border-radius: 1rem;
@@ -225,7 +225,7 @@ footer a:hover {
 
   border-bottom-left-radius: 1rem;
 
-  position: absolute;
+  position: fixed;
   bottom: 3.5rem;
   right: 7.5rem;
   border: none;
@@ -248,4 +248,13 @@ footer a:hover {
 .menu-active {
   width: auto !important;
   display: block !important;
+}
+
+dialog {
+  z-index: 20;
+}
+
+.flex-middle {
+  display: flex;
+  justify-content: space-evenly;
 }
