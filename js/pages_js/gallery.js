@@ -44,7 +44,7 @@ function renderImages() {
             <p>Date: ${item.dateUploaded}</p>
     `;
 
-    itemsWrapper.appendChild(figureTag);
+    itemsWrapper.prepend(figureTag);
   });
   activateFullScreen();
 }
@@ -80,7 +80,7 @@ uploadBtn.addEventListener("click", () => uploadDailyImage());
 function uploadDailyImage() {
   const imageFile = dailyImage.files[0];
 
-  dailyImages.unshift({
+  dailyImages.push({
     counter: counter,
     folderId: id++,
     dateUploaded: new Date().toLocaleDateString(),
