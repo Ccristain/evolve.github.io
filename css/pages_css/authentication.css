@@ -38,13 +38,6 @@ html {
 #auth-btn-wrapper {
   display: flex;
 }
-#auth-btn-wrapper button {
-  width: 100%;
-  background-color: var(--color-card);
-  cursor: pointer;
-  padding: 1rem;
-  font-size: var(--font-md);
-}
 
 #form-wrapper {
   display: flex;
@@ -107,49 +100,35 @@ html {
   width: 1rem;
 }
 
-/*Signup*/
-#signup-form {
+/*Tab Button*/
+[role="tab"] {
+  width: 100%;
   background-color: var(--color-card);
-
+  cursor: pointer;
+  padding: 1rem;
   font-size: var(--font-md);
-
-  padding: 4rem 2rem;
-  row-gap: 2rem;
-
-  display: none;
-}
-
-.open-form {
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-}
-
-.close-form {
-  display: none !important;
-}
-
-.add-border {
-  border: 1rem var(--color-bg) solid !important;
+  transition: all 250ms ease;
+  border: 1rem var(--color-bg) solid;
   opacity: 0.5;
 }
-.remove-border {
+
+[role="tab"]:hover {
+  opacity: 1;
+}
+[role="tab"][aria-selected="true"] {
   border: 0px transparent solid !important;
   opacity: 1 !important;
 }
 
-#signup-btn {
-  border: 1rem var(--color-bg) solid;
-  opacity: 0.5;
-}
-#login-btn {
-  border: 0px transparent solid;
-}
-#signup-btn,
-#login-btn {
-  transition: all 250ms ease;
-}
-#signup-btn:hover,
-#login-btn:hover {
-  opacity: 1;
+/*tab panel*/
+[role="tabpanel"] {
+  background-color: var(--color-card);
+  font-size: var(--font-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  row-gap: 2rem;
+  transform-origin: left;
+  transform: scaleX(1);
 }

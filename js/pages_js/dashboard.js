@@ -12,6 +12,7 @@ const folderItems = [
 
 let counter = folderItems.length + 1;
 
+//display the folders
 function renderFolder() {
   folderWrapper.innerHTML = "";
 
@@ -32,7 +33,7 @@ function renderFolder() {
 
     folderWrapper.appendChild(figureTag);
   });
-  activateEventHandler();
+  activateEventHandler(); //put addEventListener for Navigation
 }
 
 function activateEventHandler() {
@@ -49,9 +50,11 @@ function activateEventHandler() {
 renderFolder();
 
 /*Create Folder*/
-function createFolder() {
-  const folderTitle = document.getElementById("create-title-input");
+const folderTitle = document.getElementById("create-title-input");
+const createButton = document.getElementById("create-btn");
+createButton.addEventListener("click", () => createFolder());
 
+function createFolder() {
   folderItems.push({
     id: counter++,
     folderName: folderTitle.value,
@@ -60,7 +63,4 @@ function createFolder() {
   });
 
   renderFolder();
-
-  const modalWrapper = document.getElementById("create-folder-modal-wrapper");
-  modalWrapper.classList.remove("display-modal");
 }

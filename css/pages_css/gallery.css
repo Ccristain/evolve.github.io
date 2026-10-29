@@ -175,6 +175,7 @@ header {
   aspect-ratio: 1/1;
   border-radius: 1rem;
   object-fit: cover;
+  transform: scaleX(-1);
 }
 
 .item-cap {
@@ -200,6 +201,7 @@ header {
 
 #fullscreen-img {
   height: 100%;
+  transform: scaleX(-1);
 }
 
 #fullscreen-wrapper .close-modal-btn {
@@ -248,8 +250,27 @@ header {
 
 #export-modal-content-wrapper {
   width: auto;
+  height: auto;
+  max-height: 80%;
+  padding: 3rem 2rem;
+
+  background-color: var(--color-card);
+  border-radius: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
 }
 
-.speed-mode {
+#timelapse-speed {
+  border: 1px red solid;
   width: 100%;
+}
+
+#empty-images {
+  border: 1px white solid;
+  padding: 2rem 1rem;
+  border-radius: 1rem;
 }

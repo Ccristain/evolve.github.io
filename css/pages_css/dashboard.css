@@ -172,3 +172,30 @@ header {
 .folder-cap {
   font-size: var(--font-lg);
 }
+
+/*Modal*/
+#create-folder-modal-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  overflow: visible;
+  border: none;
+  background: none;
+  /*position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+  border: none;
+  background: none;*/
+}
+
+.modal-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#modal-content-wrapper {
+  row-gap: 1rem;
+}

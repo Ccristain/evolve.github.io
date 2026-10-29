@@ -27,23 +27,48 @@
         <input type="search" name="search-bar" id="search-bar" />
       </div>
       <div id="header-icon-wrapper">
-        <figure id="profile-wrapper">
+        <button
+          id="profile-wrapper"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          aria-controls="hamburgerMenu"
+        >
           <img
             src="../assets/evolv_logo.png"
             alt="user-profile"
             id="profile-image"
           />
           <figcaption id="profile-name">Guest 12331</figcaption>
-        </figure>
+        </button>
         <button id="settings-wrapper">
           <img src="../assets/icons/bolt.svg" alt="settings" />
         </button>
+        <section id="hamburgerMenu" class="drop-down-menu" hidden>
+          <a href="#"
+            ><img
+              src="../assets/icons/contact-dark.svg"
+              class="icon"
+            />Profile</a
+          >
+          <a href="#"
+            ><img
+              src="../assets/icons/contact-dark.svg"
+              class="icon"
+            />Log-in</a
+          >
+        </section>
       </div>
     </header>
-    <aside>
+    <aside id="collapsible">
       <img src="../assets/evolv_logo.png" alt="evolv-logo" id="galleryLogo" />
       <div id="aside-btn-wrapper">
-        <input type="checkbox" id="collapsible" class="action-button" />
+        <input
+          type="checkbox"
+          id="collapsible"
+          class="action-button"
+          aria-expanded="true"
+          aria-controls="collapsible"
+        />
         <button class="action-button aside-button">
           <img
             src="../assets/icons/layout-dashboard-dark.svg"
@@ -128,7 +153,7 @@
                   accept="image/*"
                   name="daily-image-input"
                   id="daily-image-input"
-                  class="modal"
+                  class="input-design"
                 />
               </div>
               <button type="button" class="action-button" id="upload-btn">
@@ -139,14 +164,22 @@
         </form>
       </dialog>
       <dialog id="export-modal">
-        <section class="small-modal" id="export-modal-content-wrapper">
+        <section
+          class="small-modal export-child"
+          id="export-modal-content-wrapper"
+        >
           <canvas id="export-canvas"></canvas>
-          <p>Select Timelapse Speed</p>
-          <section class="flex-middle speed-mode">
-            <button class="action-button" id="fast">Fast</button>
-            <button class="action-button" id="medium">Medium</button>
-            <button class="action-button" id="slow">Slow</button>
-          </section>
+
+          <label for="timelapse-speed">Select Timelapse Speed</label>
+          <p id="speed-number"></p>
+          <input
+            type="range"
+            id="timelapse-speed"
+            min="10"
+            max="500"
+            value="250"
+            step="10"
+          />
           <button class="action-button">Download</button>
         </section>
         <button type="button" class="close-modal-btn" id="closeExportModal">
@@ -156,13 +189,11 @@
             class="icon"
           />
         </button>
+        <p id="empty-images" hidden>EMPTY FOR TIMELAPSE. UPLOAD FIRST</p>
       </dialog>
     </main>
     <figure id="fullscreen-wrapper">
-      <button
-        onclick="closeModal('fullscreen-wrapper')"
-        class="close-modal-btn"
-      >
+      <button id="fullscreen-close-btn" class="close-modal-btn">
         <img
           src="../assets/icons/x.svg"
           alt="close-modal-button"

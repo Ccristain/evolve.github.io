@@ -24,6 +24,7 @@ const dailyImages = [
 
 let counter = dailyImages.length + 1;
 let id = 3;
+
 function renderImages() {
   itemsWrapper.innerHTML = "";
   counter = 1;
@@ -60,6 +61,11 @@ function activateFullScreen() {
   });
 }
 
+const closeFullscreenBtn = document.getElementById("fullscreen-close-btn");
+closeFullscreenBtn.addEventListener("click", () => {
+  fullScreenWrapper.classList.remove("display-modal");
+  closeCamera();
+});
 renderImages();
 
 /*Create Folder*/
@@ -74,7 +80,7 @@ uploadBtn.addEventListener("click", () => uploadDailyImage());
 function uploadDailyImage() {
   const imageFile = dailyImage.files[0];
 
-  dailyImages.push({
+  dailyImages.unshift({
     counter: counter,
     folderId: id++,
     dateUploaded: new Date().toLocaleDateString(),
@@ -151,13 +157,25 @@ function closeCamera() {
   }
 }
 
-/*Export Modal */
-let timelapseSpeed = [50, 250, 750];
+/*Speed Adjustment */
+const speedCountDisplay = document.getElementById("speed-number");
+const speedRange = document.getElementById("timelapse-speed");
 
+speedCountDisplay.innerText = speedRange.value;
+speedRange.addEventListener("input", () => {
+  speedCountDisplay.textContent = speedRange.value + "ms";
+  stopTimelapse();
+  renderTimelapse(speedRange.value);
+});
+
+/*Export Modal */
 const openExportModalBtn = document.getElementById("export-btn");
-openExportModalBtn.addEventListener("click", () =>
-  renderTimelapse(timelapseSpeed[1]),
-);
+openExportModalBtn.addEventListener("click", () => {
+  speedRange.value = 250;
+  renderTimelapse(speedRange.value);
+  speedCountDisplay.textContent = speedRange.value + "ms";
+});
+
 const closeExportModal = document.getElementById("closeExportModal");
 closeExportModal.addEventListener("click", () => stopTimelapse());
 
@@ -173,18 +191,41 @@ timelapseImage.addEventListener("load", () => {
   scaleCanvasImage(exportCtx, timelapseImage, exportCanvasTag); //render image while adjusting size
 });
 
+const emptyMessage = document.getElementById("empty-images");
+const exportChildWrapper = document.getElementById(
+  "export-modal-content-wrapper",
+);
 function renderTimelapse(speed) {
-  if (timelapseInterval) return;
-
-  timelapseInterval = setInterval(() => {
-    timelapseImage.src = dailyImages[imageCounter].imgUploaded;
-
-    imageCounter++;
-
-    if (imageCounter >= dailyImages.length) {
-      imageCounter = 0;
+  try {
+    if (
+      dailyImages[imageCounter] === undefined ||
+      dailyImages[imageCounter].imgUploaded === undefined
+    ) {
+      stopTimelapse();
+      exportChildWrapper.hidden = true;
+      emptyMessage.hidden = false;
+      return;
     }
-  }, speed);
+    if (!emptyMessage.hidden) {
+      emptyMessage.hidden = true;
+    }
+    if (exportChildWrapper.hidden) {
+      exportChildWrapper.hidden = false;
+    }
+    if (timelapseInterval) return;
+
+    timelapseInterval = setInterval(() => {
+      timelapseImage.src = dailyImages[imageCounter].imgUploaded;
+
+      imageCounter++;
+
+      if (imageCounter >= dailyImages.length) {
+        imageCounter = 0;
+      }
+    }, speed);
+  } catch (e) {
+    console.error(e.message);
+  }
 }
 
 function stopTimelapse() {
@@ -204,21 +245,3 @@ function scaleCanvasImage(ctx, img, canvas) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(img, x, y, width, height);
 }
-
-/*Timelapse Speed Adjustment*/
-const slow = document.getElementById("slow");
-const medium = document.getElementById("medium");
-const fast = document.getElementById("fast");
-
-slow.addEventListener("click", () => {
-  stopTimelapse();
-  renderTimelapse(timelapseSpeed[2]);
-});
-medium.addEventListener("click", () => {
-  stopTimelapse();
-  renderTimelapse(timelapseSpeed[1]);
-});
-fast.addEventListener("click", () => {
-  stopTimelapse();
-  renderTimelapse(timelapseSpeed[0]);
-});

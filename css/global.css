@@ -258,3 +258,16 @@ dialog {
   display: flex;
   justify-content: space-evenly;
 }
+
+.dropdown {
+  background-color: transparent;
+  border: none;
+  border: 1px var(--color-text) solid;
+  height: 2rem;
+  max-width: 420px;
+  padding: 0 1rem;
+}
+
+[hidden] {
+  display: none !important;
+}

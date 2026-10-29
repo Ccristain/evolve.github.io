@@ -1,35 +1,63 @@
 /* Change View */
-const signupBtn = document.getElementById("signup-btn");
-const loginBtn = document.getElementById("login-btn");
-const signupForm = document.getElementById("signup-form");
-const loginForm = document.getElementById("login-form");
+const tabs = document.querySelectorAll("button[role='tab']");
+const panel = document.querySelectorAll("form[role='tabpanel']");
 
-signupBtn.addEventListener("click", () => {
-  signupForm.classList.add("open-form");
-  loginForm.classList.add("close-form");
-  loginBtn.classList.add("add-border");
-  signupBtn.classList.add("remove-border");
-});
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => {
+      t.setAttribute("aria-selected", "false");
+    });
 
-loginBtn.addEventListener("click", () => {
-  signupForm.classList.remove("open-form");
-  loginForm.classList.remove("close-form");
-  loginBtn.classList.remove("add-border");
-  signupBtn.classList.remove("remove-border");
+    panel.forEach((p) => {
+      p.hidden = true;
+    });
+
+    tab.setAttribute("aria-selected", "true");
+
+    document.getElementById(tab.getAttribute("aria-controls")).hidden = false;
+  });
 });
 
 /* Navigation towards Dashboard */
 const trueLoginBtn = document.getElementById("log-in-btn");
 const trueSignUpBtn = document.getElementById("sign-up-btn");
 
-trueLoginBtn.addEventListener("click", () => {
+const nameLogInput = document.getElementById("username");
+const passLogInput = document.getElementById("password");
+const rememberBox = document.getElementById("remember");
+trueLoginBtn.addEventListener("click", (event) => {
   event.preventDefault();
-
-  window.location.href = "./dashboard.html";
+  if (
+    nameLogInput.checkValidity() &&
+    passLogInput.checkValidity() &&
+    rememberBox.checked
+  ) {
+    window.location.href = "./dashboard.html";
+  } else {
+    passLogInput.reportValidity();
+    nameLogInput.reportValidity();
+    rememberBox.reportValidity();
+  }
 });
 
-trueSignUpBtn.addEventListener("click", () => {
-  event.preventDefault();
+const nameSignInput = document.getElementById("username-apply");
+const emailSignInput = document.getElementById("email");
+const passSignInput = document.getElementById("pass-apply");
+const confirmPassInput = document.getElementById("confirm-pass-apply");
 
-  window.location.href = "./dashboard.html";
+trueSignUpBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (
+    nameSignInput.checkValidity() &&
+    emailSignInput.checkValidity() &&
+    passSignInput.checkValidity() &&
+    confirmPassInput.checkValidity()
+  ) {
+    window.location.href = "./dashboard.html";
+  } else {
+    confirmPassInput.reportValidity();
+    passSignInput.reportValidity();
+    emailSignInput.reportValidity();
+    nameSignInput.reportValidity();
+  }
 });

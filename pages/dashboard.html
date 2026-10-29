@@ -27,23 +27,48 @@
         <input type="search" name="search-bar" id="search-bar" />
       </div>
       <div id="header-icon-wrapper">
-        <figure id="profile-wrapper">
+        <button
+          id="profile-wrapper"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          aria-controls="hamburgerMenu"
+        >
           <img
             src="../assets/evolv_logo.png"
             alt="user-profile"
             id="profile-image"
           />
           <figcaption id="profile-name">Guest 12331</figcaption>
-        </figure>
+        </button>
         <button id="settings-wrapper">
           <img src="../assets/icons/bolt.svg" alt="settings" />
         </button>
+        <section id="hamburgerMenu" class="drop-down-menu" hidden>
+          <a href="#"
+            ><img
+              src="../assets/icons/contact-dark.svg"
+              class="icon"
+            />Profile</a
+          >
+          <a href="#"
+            ><img
+              src="../assets/icons/contact-dark.svg"
+              class="icon"
+            />Log-in</a
+          >
+        </section>
       </div>
     </header>
-    <aside>
+    <aside id="collapsible">
       <img src="../assets/evolv_logo.png" alt="evolv-logo" id="dashboardLogo" />
       <div id="aside-btn-wrapper">
-        <input type="checkbox" id="collapsible" class="action-button" />
+        <input
+          type="checkbox"
+          id="collapsible"
+          class="action-button"
+          aria-expanded="true"
+          aria-controls="collapsible"
+        />
         <button class="action-button aside-button">
           <img
             src="../assets/icons/layout-dashboard-dark.svg"
@@ -77,37 +102,46 @@
         />
       </button>
       <div id="tool-menu">
-        <button class="tool" onclick="openModal('create-folder-modal-wrapper')">
+        <button class="tool" id="openUploadModal">
           <img src="../assets/icons/plus.svg" class="icon" />
         </button>
       </div>
-      <article id="create-folder-modal-wrapper">
-        <form class="large-modal">
-          <button
-            class="close-modal-btn"
-            onclick="closeModal('create-folder-modal-wrapper')"
-          >
-            <img
-              src="../assets/icons/x.svg"
-              alt="close-modal-button"
-              class="icon"
-            />
-          </button>
-          <h2 class="title second-title-size">Create New Folder</h2>
-          <div class="modal-input-wrapper">
-            <label for="create-title-input" class="modal-label">Title:</label>
-            <input
-              type="text"
-              name="create-title-input"
-              id="create-title-input"
-              class="modal"
-            />
-          </div>
-          <button type="button" class="action-button" onclick="createFolder()">
-            Create
-          </button>
+      <dialog id="create-folder-modal-wrapper">
+        <form class="modals-design">
+          <section class="flex-col" id="modal-content-wrapper">
+            <button type="button" class="close-modal-btn" id="closeUploadModal">
+              <img
+                src="../assets/icons/x.svg"
+                alt="close-modal-button"
+                class="icon"
+              />
+            </button>
+            <h2 class="title second-title-size">Create New Folder</h2>
+            <div class="modal-input-wrapper">
+              <label for="create-title-input" class="modal-label">Title:</label>
+              <input
+                type="text"
+                name="create-title-input"
+                id="create-title-input"
+                class="input-design"
+              />
+            </div>
+            <div class="modal-input-wrapper">
+              <label for="upload-time" class="modal-label">Upload Per:</label>
+              <select name="upload-time" id="upload-time" class="dropdown">
+                <option value="1">Per 1 Day</option>
+                <option value="3">Per 3 Day</option>
+                <option value="7">Per 1 Week</option>
+                <option value="gif">GIF (12 upload)</option>
+                <option value="premium">500 Upload Anytime(Premium)</option>
+              </select>
+            </div>
+            <button type="button" class="action-button" id="create-btn">
+              Create
+            </button>
+          </section>
         </form>
-      </article>
+      </dialog>
     </main>
 
     <script src="../js/global_tool.js"></script>
