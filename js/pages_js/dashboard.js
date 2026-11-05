@@ -69,7 +69,6 @@ function createFolder() {
 const collapsible = document.getElementById("collapsible");
 const toggleSidebar = document.getElementById("toggle-sidebar");
 const asideBtns = document.querySelectorAll(".aside-button");
-const asideLogo = document.getElementById("dashboardLogo");
 
 const asideItems = [
   {
@@ -93,39 +92,31 @@ toggleSidebar.addEventListener("click", () => {
   setButtonContent(shouldExpand);
 });
 
-function setButtonContent(param1) {
-  if (param1) {
-    toggleSidebar.innerText = "Collapse";
-    asideLogo.style.width = "6rem";
-    asideBtns.forEach((btn, i) => {
-      btn.setAttribute("aria-label", asideItems[i].text);
-      btn.dataset.tooltip = asideItems[i].text;
-      btn.innerHTML = `
-        <img
-            src="${asideItems[i].img}"
-            class="icon"
-          />${asideItems[i].text}
-      `;
-    });
-  } else {
-    toggleSidebar.innerHTML = `
+function setButtonContent(isExpanded) {
+  document.body.classList.toggle("sidebar-expanded", isExpanded);
+  toggleSidebar.innerHTML = `
+    <img
+      src="../assets/icons/arrow-right-dark.svg"
+      class="icon"
+      alt=""
+      aria-hidden="true"
+    />
+    <span>Collapse</span>
+  `;
+
+  asideBtns.forEach((btn, i) => {
+    btn.setAttribute("aria-label", asideItems[i].text);
+    btn.dataset.tooltip = asideItems[i].text;
+    btn.innerHTML = `
       <img
-            src="../assets/icons/arrow-right-dark.svg"
-            class="icon"
-          />
+        src="${asideItems[i].img}"
+        class="icon"
+        alt=""
+        aria-hidden="true"
+      />
+      <span>${asideItems[i].text}</span>
     `;
-    asideLogo.style.width = "3rem";
-    asideBtns.forEach((btn, i) => {
-      btn.setAttribute("aria-label", asideItems[i].text);
-      btn.dataset.tooltip = asideItems[i].text;
-      btn.innerHTML = `
-        <img
-            src="${asideItems[i].img}"
-            class="icon"
-          />
-      `;
-    });
-  }
+  });
 }
 
 setButtonContent(false);
