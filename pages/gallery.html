@@ -59,46 +59,44 @@
         </section>
       </div>
     </header>
-    <aside id="collapsible">
-      <img src="../assets/evolv_logo.png" alt="evolv-logo" id="galleryLogo" />
+    <aside
+      id="collapsible"
+      aria-expanded="true"
+      aria-controls="toggle-sidebar"
+      aria-label="Collapse sidebar"
+    >
+      <img src="../assets/evolv_logo.png" alt="evolv-logo" id="dashboardLogo" />
       <div id="aside-btn-wrapper">
-        <input
-          type="checkbox"
-          id="collapsible"
-          class="action-button"
-          aria-expanded="true"
-          aria-controls="collapsible"
-        />
-        <button class="action-button aside-button">
-          <img
-            src="../assets/icons/layout-dashboard-dark.svg"
-            class="icon"
-          />Dashboard
+        <button class="action-button" id="toggle-sidebar">
+          <img src="../assets/icons/arrow-right-dark.svg" class="icon" />
         </button>
         <button class="action-button aside-button">
           <img
             src="../assets/icons/circle-question-mark-dark.svg"
             class="icon"
-          />How to Use
+          />
         </button>
         <button class="action-button aside-button">
-          <img src="../assets/icons/book-alert-dark.svg" class="icon" />Update
+          <img src="../assets/icons/book-alert-dark.svg" class="icon" />
         </button>
         <button class="action-button aside-button">
-          <img src="../assets/icons/contact-dark.svg" class="icon" />Contact Us
+          <img src="../assets/icons/contact-dark.svg" class="icon" />
         </button>
       </div>
     </aside>
     <main id="gallery-wrapper">
       <section id="gallery-folder">
         <section id="title-wrapper">
-          <h1 class="title" id="folder-title">Folder Title</h1>
-          <button class="action-button" id="export-btn">
-            <img
-              src="../assets/icons/arrow-right-dark.svg"
-              alt="export"
-            />Export
-          </button>
+          <span id="title-divider"
+            ><h1 class="title" id="folder-title">Folder Title</h1>
+            <button class="action-button" id="export-btn">
+              <img
+                src="../assets/icons/arrow-right-dark.svg"
+                alt="export"
+              />Export
+            </button></span
+          >
+          <button id="returnBtn">Return</button>
         </section>
         <div id="items">
           <!--<figure id="item-1" class="item">

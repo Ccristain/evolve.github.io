@@ -36,12 +36,11 @@ aside {
 
   padding: 1rem;
   row-gap: 3rem;
-
-  cursor: pointer;
 }
 
 aside img {
-  width: 6rem;
+  width: 3rem;
+  cursor: pointer;
 }
 #aside-btn-wrapper {
   display: flex;

@@ -64,3 +64,64 @@ function createFolder() {
 
   renderFolder();
 }
+
+/*Collapse Aside */
+const collapsible = document.getElementById("collapsible");
+const toggleSidebar = document.getElementById("toggle-sidebar");
+const asideBtns = document.querySelectorAll(".aside-button");
+const asideLogo = document.getElementById("dashboardLogo");
+
+const asideItems = [
+  {
+    img: "../assets/icons/circle-question-mark-dark.svg",
+    text: "How to Use",
+  },
+  {
+    img: "../assets/icons/book-alert-dark.svg",
+    text: "Update",
+  },
+  {
+    img: "../assets/icons/contact-dark.svg",
+    text: "Contact Us",
+  },
+];
+toggleSidebar.addEventListener("click", () => {
+  const aria = this.collapsible.getAttribute("aria-expanded") === "true";
+
+  collapsible.setAttribute("aria-expanded", String(!aria));
+  console.log(aria);
+  setButtonContent(aria);
+});
+
+function setButtonContent(param1) {
+  if (param1) {
+    toggleSidebar.innerText = "Collapse";
+    asideLogo.style.width = "6rem";
+    asideBtns.forEach((btn, i) => {
+      btn.innerHTML = `
+        <img
+            src="${asideItems[i].img}"
+            class="icon"
+          />${asideItems[i].text}
+      `;
+    });
+  } else {
+    toggleSidebar.innerHTML = `
+      <img
+            src="../assets/icons/arrow-right-dark.svg"
+            class="icon"
+          />
+    `;
+    asideLogo.style.width = "3rem";
+    asideBtns.forEach((btn, i) => {
+      btn.innerHTML = `
+        <img
+            src="${asideItems[i].img}"
+            class="icon"
+          />
+      `;
+    });
+  }
+}
+
+setButtonContent(false);

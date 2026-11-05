@@ -147,6 +147,18 @@ header {
   background-color: var(--color-card);
   box-shadow: 0 5px 10px var(--color-bg);
 }
+@media (max-width: 768px) {
+  #navlinks {
+    display: none;
+  }
+
+  #logo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 /*FOOTER*/
 footer {
   font-size: var(--font-sm);

@@ -46,7 +46,7 @@ aside {
 }
 
 aside img {
-  width: 6rem;
+  width: 3rem;
 }
 #aside-btn-wrapper {
   display: flex;
@@ -127,13 +127,30 @@ header {
 #export-btn {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
+}
+#title-divider {
+  display: flex;
+  column-gap: 1rem;
 }
 #export-btn {
   gap: 0.5rem !important;
 }
 #folder-title {
   margin-bottom: 0.5rem;
+}
+#returnBtn {
+  font-size: var(--font-lg);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(255, 110, 110);
+  font-weight: bold;
+  transition: all 250ms ease-in;
+}
+#returnBtn:hover {
+  color: var(--color-text);
 }
 
 #gallery-folder {
