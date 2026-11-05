@@ -61,7 +61,7 @@
     </header>
     <aside
       id="collapsible"
-      aria-expanded="true"
+      aria-expanded="false"
       aria-controls="toggle-sidebar"
       aria-label="Collapse sidebar"
     >
@@ -98,7 +98,12 @@
         />
       </button>
       <div id="tool-menu">
-        <button class="tool" id="openUploadModal">
+        <button
+          class="tool"
+          id="openUploadModal"
+          aria-label="Upload"
+          data-tooltip="Upload"
+        >
           <img src="../assets/icons/plus.svg" class="icon" />
         </button>
       </div>

@@ -86,11 +86,11 @@ const asideItems = [
   },
 ];
 toggleSidebar.addEventListener("click", () => {
-  const aria = this.collapsible.getAttribute("aria-expanded") === "true";
+  const isExpanded = collapsible.getAttribute("aria-expanded") === "true";
+  const shouldExpand = !isExpanded;
 
-  collapsible.setAttribute("aria-expanded", String(!aria));
-  console.log(aria);
-  setButtonContent(aria);
+  collapsible.setAttribute("aria-expanded", String(shouldExpand));
+  setButtonContent(shouldExpand);
 });
 
 function setButtonContent(param1) {
@@ -98,6 +98,8 @@ function setButtonContent(param1) {
     toggleSidebar.innerText = "Collapse";
     asideLogo.style.width = "6rem";
     asideBtns.forEach((btn, i) => {
+      btn.setAttribute("aria-label", asideItems[i].text);
+      btn.dataset.tooltip = asideItems[i].text;
       btn.innerHTML = `
         <img
             src="${asideItems[i].img}"
@@ -114,6 +116,8 @@ function setButtonContent(param1) {
     `;
     asideLogo.style.width = "3rem";
     asideBtns.forEach((btn, i) => {
+      btn.setAttribute("aria-label", asideItems[i].text);
+      btn.dataset.tooltip = asideItems[i].text;
       btn.innerHTML = `
         <img
             src="${asideItems[i].img}"
