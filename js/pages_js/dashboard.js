@@ -23,12 +23,8 @@ function renderFolder() {
     figureTag.dataset.folderId = folder.id;
 
     figureTag.innerHTML = `
-    <img
-              src="${folder.imgDisplay}"
-              class="folder-img"
-              alt="${folder.folderName}"
-            />
-            <figcaption class="folder-cap">${folder.folderName}</figcaption>
+    <img src="${folder.imgDisplay}" class="folder-img" alt="${folder.folderName}"/>
+    <figcaption class="folder-cap">${folder.folderName}</figcaption>
   `;
 
     folderWrapper.appendChild(figureTag);
