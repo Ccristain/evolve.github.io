@@ -35,7 +35,7 @@
       <main>
         <section id="main-content-wrapper">
           <div id="form-wrapper">
-            <form method="post" id="contact-form">
+            <form id="contact-form">
               <h1>Start a Conversation</h1>
 
               <label for="name"
@@ -63,14 +63,16 @@
                 ><span>Message:</span>
                 <textarea
                   id="message"
+                  name="message"
                   placeholder="Write something..."
                   maxlength="1000"
                   required
                 ></textarea>
               </label>
               <button type="submit" id="submit-btn" class="action-button">
-                Submit
+                Send Message
               </button>
+              <p id="status"></p>
             </form>
           </div>
 
@@ -97,6 +99,7 @@
       </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="../js/global.js" defer></script>
     <script src="../js/pages_js/contact.js" defer></script>
   </body>
