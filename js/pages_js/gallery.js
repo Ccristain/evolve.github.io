@@ -108,6 +108,8 @@ async function showCamera() {
     cameraStream = await navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: "user",
+        width: { ideal: 1920 },
+        height: { ideal: 1080 },
       },
     });
 
@@ -171,6 +173,8 @@ speedRange.addEventListener("input", () => {
 /*Export Modal */
 const openExportModalBtn = document.getElementById("export-btn");
 openExportModalBtn.addEventListener("click", () => {
+  stopTimelapse();
+  imageCounter = 0;
   speedRange.value = 250;
   renderTimelapse(speedRange.value);
   speedCountDisplay.textContent = speedRange.value + "ms";
@@ -251,7 +255,6 @@ function scaleCanvasImage(ctx, img, canvas) {
 const collapsible = document.getElementById("collapsible");
 const toggleSidebar = document.getElementById("toggle-sidebar");
 const asideBtns = document.querySelectorAll(".aside-button");
-const asideLogo = document.getElementById("dashboardLogo");
 
 const asideItems = [
   {
@@ -268,41 +271,38 @@ const asideItems = [
   },
 ];
 toggleSidebar.addEventListener("click", () => {
-  const aria = this.collapsible.getAttribute("aria-expanded") === "true";
+  const isExpanded = collapsible.getAttribute("aria-expanded") === "true";
+  const shouldExpand = !isExpanded;
 
-  collapsible.setAttribute("aria-expanded", String(!aria));
-  setButtonContent(aria);
+  collapsible.setAttribute("aria-expanded", String(shouldExpand));
+  setButtonContent(shouldExpand);
 });
 
-function setButtonContent(param1) {
-  if (param1) {
-    toggleSidebar.innerText = "Collapse";
-    asideLogo.style.width = "6rem";
-    asideBtns.forEach((btn, i) => {
-      btn.innerHTML = `
-        <img
-            src="${asideItems[i].img}"
-            class="icon"
-          />${asideItems[i].text}
-      `;
-    });
-  } else {
-    toggleSidebar.innerHTML = `
+function setButtonContent(isExpanded) {
+  document.body.classList.toggle("sidebar-expanded", isExpanded);
+  toggleSidebar.innerHTML = `
+    <img
+      src="../assets/icons/arrow-right-dark.svg"
+      class="icon"
+      alt=""
+      aria-hidden="true"
+    />
+    <span>Collapse</span>
+  `;
+
+  asideBtns.forEach((btn, i) => {
+    btn.setAttribute("aria-label", asideItems[i].text);
+    btn.dataset.tooltip = asideItems[i].text;
+    btn.innerHTML = `
       <img
-            src="../assets/icons/arrow-right-dark.svg"
-            class="icon"
-          />
+        src="${asideItems[i].img}"
+        class="icon"
+        alt=""
+        aria-hidden="true"
+      />
+      <span>${asideItems[i].text}</span>
     `;
-    asideLogo.style.width = "3rem";
-    asideBtns.forEach((btn, i) => {
-      btn.innerHTML = `
-        <img
-            src="${asideItems[i].img}"
-            class="icon"
-          />
-      `;
-    });
-  }
+  });
 }
 
 setButtonContent(false);
@@ -312,3 +312,175 @@ const returnBtn = document.getElementById("returnBtn");
 returnBtn.addEventListener("click", () => {
   window.location.href = "./dashboard.html";
 });
+
+const downloadTimelapseBtn = document.getElementById("download-timelapse");
+const downloadStatus = document.getElementById("download-status");
+let downloadInProgress = false;
+
+downloadTimelapseBtn.addEventListener("click", downloadTimelapse);
+
+async function downloadTimelapse() {
+  if (downloadInProgress) return;
+
+  if (dailyImages.length === 0) {
+    downloadStatus.textContent = "Add images before downloading a video.";
+    return;
+  }
+
+  if (
+    typeof MediaRecorder === "undefined" ||
+    typeof HTMLCanvasElement.prototype.captureStream !== "function"
+  ) {
+    downloadStatus.textContent =
+      "Video recording is not supported by this browser.";
+    console.error("Canvas video recording is not supported by this browser.");
+    return;
+  }
+
+  downloadInProgress = true;
+  downloadTimelapseBtn.disabled = true;
+  downloadStatus.textContent = "Preparing video...";
+
+  let stream;
+  let recorder;
+  try {
+    const images = await Promise.all(
+      dailyImages.map(
+        ({ imgUploaded }) =>
+          new Promise((resolve, reject) => {
+            if (!imgUploaded) {
+              reject(new Error("An uploaded image has no image source."));
+              return;
+            }
+
+            const image = new Image();
+            image.addEventListener("load", () => resolve(image), {
+              once: true,
+            });
+            image.addEventListener(
+              "error",
+              () => reject(new Error("An uploaded image could not be loaded.")),
+              { once: true },
+            );
+            image.src = imgUploaded;
+          }),
+      ),
+    );
+
+    // Record on a separate canvas so the visible preview can keep looping.
+    const recordingCanvas = document.createElement("canvas");
+    let sourceWidth = 0;
+    let sourceHeight = 0;
+    for (const image of images) {
+      if (image.naturalWidth === 0 || image.naturalHeight === 0) {
+        throw new Error("An uploaded image has no usable dimensions.");
+      }
+      sourceWidth = Math.max(sourceWidth, image.naturalWidth);
+      sourceHeight = Math.max(sourceHeight, image.naturalHeight);
+    }
+
+    // Upscale small sources to at least 1080 pixels on the long side; preserve ratio and cap at 4K.
+    const resolutionScale = Math.min(
+      Math.max(1, 1920 / Math.max(sourceWidth, sourceHeight)),
+      3840 / sourceWidth,
+      3840 / sourceHeight,
+    );
+    recordingCanvas.width = Math.max(
+      2,
+      Math.floor((sourceWidth * resolutionScale) / 2) * 2,
+    );
+    recordingCanvas.height = Math.max(
+      2,
+      Math.floor((sourceHeight * resolutionScale) / 2) * 2,
+    );
+    const recordingContext = recordingCanvas.getContext("2d", { alpha: false });
+    if (!recordingContext) {
+      throw new Error("Could not create a canvas context for the video.");
+    }
+    recordingContext.imageSmoothingEnabled = true;
+    recordingContext.imageSmoothingQuality = "high";
+
+    const speed = Number(speedRange.value);
+    const drawFrame = (image) =>
+      scaleCanvasImage(recordingContext, image, recordingCanvas);
+    drawFrame(images[0]);
+    stream = recordingCanvas.captureStream(30);
+
+    const mimeTypes = [
+      "video/webm;codecs=vp9",
+      "video/webm;codecs=vp8",
+      "video/webm",
+    ];
+    const mimeType =
+      typeof MediaRecorder.isTypeSupported === "function"
+        ? mimeTypes.find((type) => MediaRecorder.isTypeSupported(type))
+        : undefined;
+    // Use a high bitrate to reduce encoder artifacts; scale it with pixels and cap at 50 Mbps.
+    const videoBitsPerSecond = Math.min(
+      50_000_000,
+      Math.round(
+        (20_000_000 * recordingCanvas.width * recordingCanvas.height) /
+          (1920 * 1080),
+      ),
+    );
+    recorder = new MediaRecorder(stream, {
+      ...(mimeType ? { mimeType } : {}),
+      videoBitsPerSecond,
+    });
+    const recordedChunks = [];
+    let recorderError;
+    const recordingStopped = new Promise((resolve) => {
+      recorder.addEventListener("stop", resolve, { once: true });
+    });
+
+    recorder.addEventListener("dataavailable", (event) => {
+      if (event.data.size > 0) recordedChunks.push(event.data);
+    });
+    recorder.addEventListener(
+      "error",
+      (event) => {
+        recorderError = event.error || new Error("The video recording failed.");
+      },
+      { once: true },
+    );
+
+    downloadStatus.textContent = "Recording video...";
+    recorder.start();
+    // Keep each image for the selected duration and record exactly one pass.
+    for (const image of images) {
+      if (recorderError) throw recorderError;
+      drawFrame(image);
+      await new Promise((resolve) => window.setTimeout(resolve, speed));
+      if (recorderError) throw recorderError;
+    }
+
+    recorder.stop();
+    await recordingStopped;
+    if (recorderError) throw recorderError;
+
+    const videoBlob = new Blob(recordedChunks, {
+      type: recorder.mimeType || "video/webm",
+    });
+    if (videoBlob.size === 0) {
+      throw new Error("The video recording did not contain any data.");
+    }
+
+    const downloadUrl = URL.createObjectURL(videoBlob);
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = "timelapse.webm";
+    link.click();
+    window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+    downloadStatus.textContent = "Video downloaded.";
+  } catch (error) {
+    console.error("Could not download the timelapse video.", error);
+    downloadStatus.textContent = `Could not download video: ${
+      error instanceof Error ? error.message : "An unexpected error occurred."
+    }`;
+  } finally {
+    if (recorder && recorder.state !== "inactive") recorder.stop();
+    if (stream) stream.getTracks().forEach((track) => track.stop());
+    downloadInProgress = false;
+    downloadTimelapseBtn.disabled = false;
+  }
+}
