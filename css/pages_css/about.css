@@ -608,14 +608,16 @@ body {
   margin-block: 1.5rem 2rem;
   padding: 0.5rem 1.25rem;
   border-left: 2px solid var(--color-accent);
+  list-style: none;
 }
 
-.keep-going-list p {
+.keep-going-list li {
   margin-block: 0.7rem;
   color: var(--color-bg);
+  line-height: 1.8;
 }
 
-.keep-going-list span {
+.keep-going-list strong {
   font-weight: 800;
 }
 

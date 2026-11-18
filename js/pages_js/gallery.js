@@ -331,7 +331,8 @@ async function downloadTimelapse() {
     typeof MediaRecorder === "undefined" ||
     typeof HTMLCanvasElement.prototype.captureStream !== "function"
   ) {
-    downloadStatus.textContent = "Video recording is not supported by this browser.";
+    downloadStatus.textContent =
+      "Video recording is not supported by this browser.";
     console.error("Canvas video recording is not supported by this browser.");
     return;
   }
@@ -353,7 +354,9 @@ async function downloadTimelapse() {
             }
 
             const image = new Image();
-            image.addEventListener("load", () => resolve(image), { once: true });
+            image.addEventListener("load", () => resolve(image), {
+              once: true,
+            });
             image.addEventListener(
               "error",
               () => reject(new Error("An uploaded image could not be loaded.")),
@@ -416,19 +419,14 @@ async function downloadTimelapse() {
     const videoBitsPerSecond = Math.min(
       50_000_000,
       Math.round(
-        (20_000_000 *
-          recordingCanvas.width *
-          recordingCanvas.height) /
+        (20_000_000 * recordingCanvas.width * recordingCanvas.height) /
           (1920 * 1080),
       ),
     );
-    recorder = new MediaRecorder(
-      stream,
-      {
-        ...(mimeType ? { mimeType } : {}),
-        videoBitsPerSecond,
-      },
-    );
+    recorder = new MediaRecorder(stream, {
+      ...(mimeType ? { mimeType } : {}),
+      videoBitsPerSecond,
+    });
     const recordedChunks = [];
     let recorderError;
     const recordingStopped = new Promise((resolve) => {
