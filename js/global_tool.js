@@ -1,6 +1,12 @@
 const toolBtn = document.getElementById("toolset");
 const toolMenu = document.getElementById("tool-menu");
 
+document.querySelectorAll(".contact-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    window.location.href = "../pages/contact.html";
+  });
+});
+
 if (toolBtn) {
   toolBtn.addEventListener("click", () => {
     toolMenu.classList.toggle("menu-active");
