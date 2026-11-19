@@ -339,3 +339,54 @@ header {
     border-radius: 0rem;
   }
 }
+
+@media (max-width: 768px) {
+  #create-folder-modal-wrapper.display-modal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+    transform: none;
+  }
+
+  #create-folder-modal-wrapper .modals-design {
+    box-sizing: border-box;
+    width: min(100%, 32rem);
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+    margin: 0;
+    padding: 3rem 1rem 1.5rem;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    overflow-y: auto;
+  }
+
+  #create-folder-modal-wrapper .close-modal-btn {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  #create-folder-modal-wrapper .modal-input-wrapper {
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  #create-title-input,
+  #upload-time {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #create-folder-modal-wrapper .modal-label {
+    font-size: var(--font-md);
+  }
+}

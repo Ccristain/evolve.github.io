@@ -331,27 +331,77 @@ header {
 }
 
 #camera {
-  width: 500px;
+  width: min(100%, 500px);
   height: auto;
+  max-height: 55vh;
+  object-fit: contain;
   transform: scaleX(-1);
 }
 
+#create-folder-modal-wrapper.display-modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#create-folder-modal-wrapper .large-modal {
+  box-sizing: border-box;
+  width: min(90vw, 64rem);
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  height: auto;
+  position: relative;
+  top: auto;
+  left: auto;
+  overflow-y: auto;
+}
+
+#create-folder-modal-wrapper .close-modal-btn {
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
 #camera-upload-input-wrapper {
+  box-sizing: border-box;
   display: flex;
-  align-items: center;
-  column-gap: 2rem;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  gap: 1.5rem;
 }
 
 .capture-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
   gap: 0.5rem;
 }
 
+.capture-divider {
+  align-self: center;
+  margin: 0;
+}
+
 #selectedImageFromFile {
-  max-width: 300px;
+  max-width: min(100%, 300px);
   max-height: 300px;
+  object-fit: contain;
+}
+
+.modal-input-wrapper {
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 0;
+}
+
+#daily-image-input {
+  max-width: 100%;
 }
 
 /*Export Modal*/
@@ -386,7 +436,6 @@ header {
 }
 
 #timelapse-speed {
-  border: 1px red solid;
   width: 100%;
 }
 
@@ -461,25 +510,51 @@ header {
     border-radius: 0;
   }
   /*Capture modal*/
+  #create-folder-modal-wrapper {
+    top: 50vh;
+    left: 50vw;
+  }
+  #create-folder-modal-wrapper .large-modal {
+    width: calc(100% - 2rem);
+    padding: 3rem 1rem 1.25rem;
+  }
 
   #camera-upload-input-wrapper {
     flex-direction: column;
-    align-items: start;
-    column-gap: 0;
-    row-gap: 1rem;
+    align-items: center;
+    gap: 1rem;
   }
 
   .capture-modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    border: 1px red solid;
     width: 100%;
   }
 
+  #camera {
+    width: 100%;
+    max-height: 40vh;
+  }
+
   #selectedImageFromFile {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 100%;
+    max-height: 40vh;
+  }
+
+  #create-folder-modal-wrapper .modal-input-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  #export-canvas {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  #export-modal-content-wrapper {
+    width: 90vw;
+    height: 75vh;
+    padding: 1rem 1rem;
   }
 }
