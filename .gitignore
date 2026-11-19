@@ -1,0 +1,14 @@
+# Secrets
+.env
+github.key
+
+# Packages
+node_modules
+
+# Outputs
+dist
+
+# IDE
+.vscode
+.vscode
+!.vscode/settings.json

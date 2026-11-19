@@ -188,8 +188,7 @@ header {
   padding: 0 1rem;
 }
 
-#profile-image,
-#settings-wrapper {
+#profile-image {
   width: 3rem;
   height: 3rem;
 
@@ -200,23 +199,12 @@ header {
   display: none;
 }
 
-#profile-wrapper,
-#settings-wrapper {
+#profile-wrapper {
   cursor: pointer;
   overflow: hidden;
-  border: none;
+  border: 3px var(--color-primary) solid;
   border-radius: 50%;
   background-color: transparent;
-}
-
-#settings-wrapper img {
-  width: 100%;
-  transition: all 250ms ease-in;
-}
-
-#settings-wrapper:hover img {
-  width: 75%;
-  transform: rotate(360deg);
 }
 /*Main*/
 #gallery-wrapper {
@@ -299,4 +287,106 @@ header {
 
 #modal-content-wrapper {
   row-gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  header {
+    background-color: var(--color-border);
+    grid-column: 1/3;
+    grid-row: 1/2;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0.5rem 1rem;
+    column-gap: 1rem;
+  }
+  aside {
+    display: none;
+  }
+  #gallery-wrapper {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    padding: 1.5rem;
+  }
+  /*Header*/
+  #search-wrapper {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    justify-content: start;
+    column-gap: 1rem;
+  }
+
+  #search-bar {
+    flex: 1;
+  }
+  /*Folder*/
+  #gallery-folder h1 {
+    margin-bottom: 1rem;
+  }
+  #folders {
+    justify-content: space-evenly;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .folder {
+    width: 6rem;
+  }
+
+  .folder-img {
+    border-radius: 0rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #create-folder-modal-wrapper.display-modal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+    transform: none;
+  }
+
+  #create-folder-modal-wrapper .modals-design {
+    box-sizing: border-box;
+    width: min(100%, 32rem);
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+    margin: 0;
+    padding: 3rem 1rem 1.5rem;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    overflow-y: auto;
+  }
+
+  #create-folder-modal-wrapper .close-modal-btn {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  #create-folder-modal-wrapper .modal-input-wrapper {
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  #create-title-input,
+  #upload-time {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #create-folder-modal-wrapper .modal-label {
+    font-size: var(--font-md);
+  }
 }
