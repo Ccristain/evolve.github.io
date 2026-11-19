@@ -132,3 +132,44 @@ html {
   transform-origin: left;
   transform: scaleX(1);
 }
+
+@media (max-width: 768px) {
+  main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 1rem;
+  }
+
+  #auth-wrapper {
+    width: 100%;
+    max-width: unset;
+
+    margin: 2rem 4rem;
+  }
+
+  #login-form {
+    padding: 4rem 1rem;
+    row-gap: 2rem;
+  }
+
+  #signup-form {
+    padding: 4rem 1rem;
+    row-gap: 3rem;
+  }
+
+  .input-wrapper {
+    width: 80%;
+    max-width: unset;
+  }
+
+  .action-button {
+    width: 80%;
+  }
+
+  #remember-wrapper {
+    width: 80%;
+    max-width: unset;
+  }
+}
