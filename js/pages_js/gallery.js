@@ -41,7 +41,7 @@ function renderImages() {
               alt="${item.count} + Count Uploaded"
             />
             <figcaption class="item-cap">Day: ${counter++}</figcaption>
-            <p>Date: ${item.dateUploaded}</p>
+            <p class="item-date">Date: ${item.dateUploaded}</p>
     `;
 
     itemsWrapper.prepend(figureTag);
