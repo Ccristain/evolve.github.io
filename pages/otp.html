@@ -36,9 +36,9 @@
       <form id="otp-form">
         <h1>OTP Verification</h1>
         <p id="sub-title">Enter OTP Code sent to +639#########</p>
-        <input type="number" id="otp-input" placeholder="######" />
+        <input type="number" id="otp-input" placeholder="######" required />
         <section id="resend-group">
-          <p>Didn't receive OTP code?</p>
+          <p id="question">Didn't receive OTP code?</p>
           <button type="button" id="resend-btn">Resend Code</button>
         </section>
         <button type="submit" id="verify-btn" class="action-button">
