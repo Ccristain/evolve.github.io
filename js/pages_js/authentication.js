@@ -53,7 +53,7 @@ trueSignUpBtn.addEventListener("click", (event) => {
     passSignInput.checkValidity() &&
     confirmPassInput.checkValidity()
   ) {
-    window.location.href = "./dashboard.html";
+    window.location.href = "./otp.html";
   } else {
     confirmPassInput.reportValidity();
     passSignInput.reportValidity();
