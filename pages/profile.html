@@ -35,12 +35,12 @@
         </button>
 
         <section id="hamburgerMenu" class="drop-down-menu" hidden>
-          <a href="profile.html"
+          <a href="dashboard.html"
             ><img
               src="../assets/icons/contact-dark.svg"
               class="icon"
               alt=""
-            />Profile</a
+            />Dashboard</a
           >
           <a href="authentication.html"
             ><img
@@ -61,11 +61,7 @@
       <img src="../assets/evolv_logo.png" alt="Evolv" id="dashboardLogo" />
       <div id="aside-btn-wrapper">
         <button class="action-button" id="toggle-sidebar">
-          <img
-            src="../assets/icons/arrow-right-dark.svg"
-            class="icon"
-            alt=""
-          />
+          <img src="../assets/icons/arrow-right-dark.svg" class="icon" alt="" />
         </button>
         <button class="action-button aside-button">
           <img
@@ -75,11 +71,7 @@
           />
         </button>
         <button class="action-button aside-button">
-          <img
-            src="../assets/icons/book-alert-dark.svg"
-            class="icon"
-            alt=""
-          />
+          <img src="../assets/icons/book-alert-dark.svg" class="icon" alt="" />
         </button>
         <button
           class="action-button aside-button contact-button"
@@ -92,18 +84,57 @@
     <main>
       <article id="profile-container">
         <h1 class="title">Profile</h1>
-        <section class="profile-section">
+        <fieldset class="profile-fieldset">
           <h2>Personal</h2>
-        </section>
-        <section class="profile-section">
-          <h2>Privacy</h2>
-        </section>
-        <section class="profile-section">
+          <section id="personal-wrapper">
+            <figure id="profile-img-wrapper">
+              <img
+                src="../assets/evolv_logo.png"
+                id="profile-img"
+                alt="profile picture"
+              />
+            </figure>
+            <hr />
+            <section class="p-container">
+              <p>
+                <span>Name:</span><span>Guest12331</span
+                ><button class="edit-btn">Edit</button>
+              </p>
+              <p>
+                <span>Email:</span><span>guestemail@example.com</span
+                ><button class="edit-btn">Edit</button>
+              </p>
+              <p>
+                <span>Password:</span><span>password123</span
+                ><button class="edit-btn">Edit</button>
+              </p>
+            </section>
+          </section>
+        </fieldset>
+        <fieldset class="profile-fieldset">
           <h2>Theme</h2>
-        </section>
-        <section class="profile-section">
+          <section id="color-theme-wrapper">
+            <select id="theme" name="theme">
+              <option value="dark">Dark Theme</option>
+              <option value="light">Light Theme</option></select
+            ><button class="edit-btn">Set</button>
+          </section>
+        </fieldset>
+        <fieldset class="profile-fieldset">
           <h2>Data</h2>
-        </section>
+          <section id="data-wrapper">
+            <div class="data-box">
+              <p class="count">+0</p>
+              <p class="category">Folder</p>
+            </div>
+            <div class="data-box">
+              <p class="count">+0</p>
+
+              <p class="category">Image Uploaded</p>
+            </div>
+          </section>
+          <button type="button" id="reset">Delete All Data</button>
+        </fieldset>
       </article>
     </main>
 
